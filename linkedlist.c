@@ -4,36 +4,59 @@
 typedef struct _Node {
 	int num;
 	struct _Node* next;
+	struct _Node* previous;
 } node;
 
 node* add(int i, node* link) {
-	link->next = (node*) malloc(sizeof(node));
-	link->next->num = i;
+	node* tmp;
+
+	if(link==0x0) {
+		link = (node*) malloc(sizeof(node));
+		link->num = i;
+	} else {
+		tmp=link;
+		link->next = (node*) malloc(sizeof(node));
+		link=link->next;
+		link->previous=tmp;
+		link->num = i;
+	}
+
+	return link;
+
 }
 
-void node_print(node* n) {
-	node* tmp = n;
+node* reverse(node* link) {
+	do {
+		link = link->previous;
+	} while(link->previous!=0);
 
-	while(tmp!=0x0) {
-		printf("%d\n", tmp->num);
-		tmp = tmp->next;
+	return link;
+}
 
+void node_print(node* link) {
+	while(link!=0x0) {
+		printf("%d\n", link->num);
+		link = link->next;
 	}
 }
 
 int main(int argc, char* argv[]) {
-	node *head, *n;
+	node *head = NULL;
 	int i;
-	head = (node*) malloc(sizeof(node));
-	n = head;
-	head->num = 1;
 
-	// printf("%p\n", head);
-
-	for(i=2; i<=15; i++) {
-		n = add(i,n);
+	for(i=1; i<=5; i++) {
+		head = add(i, head);
 	}
 
+	// while(1) {
+	// 	scanf("%d", &i);
+	// 	if(i!=-741) head = add(i, head);
+	// 	else break;
+	// }
+	
+	head = reverse(head);
 	node_print(head);
+	free(head);
 
+	return 0;
 }
