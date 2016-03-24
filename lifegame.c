@@ -1,20 +1,16 @@
 #include <stdio.h>
 
-int checknum(int x, int y) {
-
-}
-
 int main() {
 	int board[11][11] = {0}, board2[11][11];
 	int i, j, num;
 	int x0, x2, y0, y2;
 	int dead = 0;
 
-	board[5][5] = 1;
+	board[4][6] = 1;
 	board[5][4] = 1;
 	board[5][6] = 1;
-	board[4][5] = 1;
 	board[6][5] = 1;
+	board[6][6] = 1;
 
 	for (i=0; i<11; i++) 
 		for (j=0; j<11; j++)
@@ -24,7 +20,7 @@ int main() {
 
 		for (i=0; i<11; i++) {
 			for (j=0; j<11; j++) 
-				printf("%d ", board[i][j]);
+				printf("%c ", (board[i][j] == 1) ? 'X' : '0');
 			printf("\n");
 		}
 		
@@ -61,4 +57,5 @@ int main() {
 		for (j=0; j<11; j++)
 		board[i][j] = board2[i][j];
 	} while(dead);
+	return 0;
 }
