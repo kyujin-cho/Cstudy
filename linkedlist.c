@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 	// 	if(i!=-741) head = add(i, head);
 	// 	else break;
 	// }
-	
+
 	head = reverse(head);
 	node_print(head);
 	free(head);

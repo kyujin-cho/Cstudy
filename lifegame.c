@@ -12,29 +12,29 @@ int main() {
 	board[6][5] = 1;
 	board[6][6] = 1;
 
-	for (i=0; i<11; i++) 
+	for (i=0; i<11; i++)
 		for (j=0; j<11; j++)
 		board2[i][j] = board[i][j];
 	do {
-		system("clear");	
+		system("clear");
 
 		for (i=0; i<11; i++) {
-			for (j=0; j<11; j++) 
-				printf("%c ", (board[i][j] == 1) ? 'X' : '0');
+			for (j=0; j<11; j++)
+				printf("%c ", (board[i][j] == 1) ?'X' : '0');
 			printf("\n");
 		}
-		
+
 		for (i=0; i<11; i++) {
 			for (j=0; j<11; j++) {
-				
+
 				x0 = (i == 0) ? 10 : i-1;
 				x2 = (i == 10) ? 0 : i+1;
 
 				y0 = (j == 0) ? 10 : j-1;
 				y2 = (j == 10) ? 0 : j+1;
-				
-				num = board[x0][y0] + board[i][y0] + board[x2][y0] 
-					+ board[x0][j] + board[x2][j] 
+
+				num = board[x0][y0] + board[i][y0] + board[x2][y0]
+					+ board[x0][j] + board[x2][j]
 					+ board[x0][y2] + board[i][y2] + board[x2][y2];
 
 				dead = (dead == 1 || num == 3) ? 1 : 0;
@@ -47,13 +47,13 @@ int main() {
 				}
 				else if(num == 3)
 					board2[i][j] = 1;
-				else 
+				else
 					board2[i][j] = 0;
 			}
 		}
 	getchar();
 
-	for (i=0; i<11; i++) 
+	for (i=0; i<11; i++)
 		for (j=0; j<11; j++)
 		board[i][j] = board2[i][j];
 	} while(dead);
