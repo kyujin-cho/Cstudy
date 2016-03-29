@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
 				break;
 			case 'A' :
 			case 'a' :
-				print("Input number (for example, 4 means append number 4)\n");
+				printf("Input number (for example, 4 means append number 4)\n");
 				scanf("%d", &i);
 				node_append(head, i);
 				break;
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]) {
 			case 'd' :
 				printf("Input node position to delete (For example, 5 means delete node in postition 5)\n");
 				scanf("%d", &i);
-				node_remove(i);
+				node_remove(head, i);
 				break;
 			case 'P' :
 			case 'p' :
