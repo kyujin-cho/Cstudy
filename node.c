@@ -82,7 +82,6 @@ void node_print(node* n, int p) {
 }
 
 void node_print_all(node* n) {
-	printf("Printing Linked List Number: \n");
 	while(n->next != 0x0) {
 		printf("%d %p\n", n->num, n);
 		n=n->next;
@@ -90,52 +89,44 @@ void node_print_all(node* n) {
 }
 
 int main(int argc, char* argv[]) {
-	int i, j;
+	int i, j, k;
 	char c;
 
 	node *head = (node*) malloc(sizeof(node));
 	printf("Main: %p\n", head);
 
-//	for(i=1; i<=10; i++)
-//		node_append(head, i);
-//	printf("Main: %p\n", head);
-//	node_print_all(head);
-//
-//	node_print(head, 5);
-//	node_insert(head, 54, 5);
-//	node_print(head, 5);
-//	node_print_all(head);
-//	node_remove(head, 5);
-//	node_print(head, 5);
-//	node_print(head, 10);
-//	node_print_all(head);
-
-	printf("Input command(I: insert, A: append, D: delete, P: print, R: print all. E: exit.\n");
-	scanf(" %c", &c);
 	while(1) {
+		printf("Input command(I: insert, A: append, C: append sequentially, D: delete, P: print, R: print all,  E: exit.\n");
+		scanf(" %c", &c);
 		if(c =='E' || c == 'e') break;
 		switch(c) {
 			case 'I':
 			case 'i':
-				printf("Input number and position (For example, 4 5 measn put number 4 in fifth node)\n");
+				printf("Input number and position (For example, 4 5 means put number 4 in fifth node)\n");
 				scanf("%d %d", &i, &j);
 				node_insert(head, i, j);
 				break;
 			case 'A' :
 			case 'a' :
-				printf("Input number (for example, 4 means append number 4)\n");
+				printf("Input number (for example, 4 means appending number 4)\n");
 				scanf("%d", &i);
 				node_append(head, i);
 				break;
+			case 'C' :
+			case 'c' :
+				printf("Input number range to append (for example, 4 7 means appending number 4,5,6,7 in a row)\n");
+				scanf("%d %d", &i, &j);
+				for(k=i; k<=j; k++) node_append(head, k);
+				break;
 			case 'D' :
 			case 'd' :
-				printf("Input node position to delete (For example, 5 means delete node in postition 5)\n");
+				printf("Input node position to delete (For example, 5 means deleting fifth node)\n");
 				scanf("%d", &i);
 				node_remove(head, i);
 				break;
 			case 'P' :
 			case 'p' :
-				printf("Input node position to print (For example, 5 means print number in fifth node)\n");
+				printf("Input node position to print (For example, 5 means printing number in fifth node)\n");
 				scanf("%d", &i);
 				node_print(head, i);
 				break;
@@ -146,8 +137,6 @@ int main(int argc, char* argv[]) {
 
 		}
 	}
-
-
 	free(head);
 	return 0;
 }
